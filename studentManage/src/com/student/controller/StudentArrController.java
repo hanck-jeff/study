@@ -2,23 +2,23 @@ package com.student.controller;
 
 
 import com.student.model.vo.Student;
-import static com.student.view.MainView.*;
-import static com.student.model.dao.StudentDao.studentDao;
+import static com.student.view.MainArrView.*;
+import static com.student.model.dao.StudentArrDao.studentArrDao;
 
 //프로그램에서 서비스를 진행시키는 역할을 하는 클래스
-public class StudentController {
+public class StudentArrController {
 	
 //	private StudentDao dao = new StudentDao();
 //	private MainView view = new MainView();
 //	컨트롤러에도 new view 가 있고 view에도 controller에도 view가 있어서 서로 소환하다가 스택이 차버림.. 그래서 스택오버플로우 오류발생
 	
 	//single tone patten
-	private static StudentController controller;
+	private static StudentArrController controller;
 	
-	private StudentController() {}
+	private StudentArrController() {}
 	
-	public static StudentController getStudentController() {
-		if(controller == null) controller = new StudentController();
+	public static StudentArrController getStudentArrController() {
+		if(controller == null) controller = new StudentArrController();
 		return controller;
 		
 	}
@@ -40,7 +40,7 @@ public class StudentController {
 		//입력한 정보 확인하기
 		
 		//2. 데이터 저장소에 저장 - StudentDao(data access object)클래스를 이용해서 데이터를 저장
-		boolean result = studentDao().saveStudent(student);
+		boolean result = studentArrDao().saveStudent(student);
 		//single tone?
 		
 		//3. 서비스 실행 결과 출력 -> 화면 메세지 출력 화면
@@ -51,11 +51,11 @@ public class StudentController {
 	}
 	
 	public void updateStudent() {
-		String studentList = studentDao().searchStudent();
+		String studentList = studentArrDao().searchStudent();
 		
 		if(!studentList.equals("")) {
 			int no = mainView().updateStudentListView(studentList);
-			Student s = studentDao().updateStudentByNo(no);
+			Student s = studentArrDao().updateStudentByNo(no);
 			if(s != null) { mainView().editStudentView(s);}
 			else {
 				String msg = "없는 학생입니다.";
@@ -69,11 +69,11 @@ public class StudentController {
 	}
 	
 	public void deleteStudent() {
-		String studentList = studentDao().searchStudent();
+		String studentList = studentArrDao().searchStudent();
 		String msg ="";
 		if(!studentList.equals("")) {
 			int no = mainView().deleteStudentListView(studentList);
-			boolean result = studentDao().deleteStudentByNo(no);
+			boolean result = studentArrDao().deleteStudentByNo(no);
 			msg = result?"회원 삭제 성공":"회원 삭제 실패";
 		}else {
 			msg = "등록된 학생이 없습니다.";
@@ -84,25 +84,25 @@ public class StudentController {
 	public void searchStudent() {
 		//1. dao 필드에 저장된 학생들을 가져오기
 		//2. 가져온 학생을 출력하기
-		String studentList = studentDao().searchStudent();
+		String studentList = studentArrDao().searchStudent();
 		mainView().searchStudentView((studentList.equals(""))?"검색결과가 없습니다.":studentList);
 	}
 	
 	public void searchStudentByNo() {
 		int studentNo = mainView().searchStudentByNoView();
-		String studentList = studentDao().searchStudentByNo(studentNo);
+		String studentList = studentArrDao().searchStudentByNo(studentNo);
 		mainView().searchStudentView((studentList.equals(""))?"검색결과가 없습니다.":studentList);
 	}
 	
 	public void searchStudentByGrade() {
 		int grade = mainView().searchStudentByGradeView();
-		String studentList = studentDao().searchStudentByGrade(grade);
+		String studentList = studentArrDao().searchStudentByGrade(grade);
 		mainView().searchStudentView((studentList.equals(""))?"검색결과가 없습니다.":studentList);
 	}
 	
 	public void searchStudentByName() {
 		String name = mainView().searchStudentByNameView();
-		String studentList = studentDao().searchStudentByName(name);
+		String studentList = studentArrDao().searchStudentByName(name);
 		mainView().searchStudentView((studentList.equals(""))?"검색결과가 없습니다.":studentList);		
 	}
 	

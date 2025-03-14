@@ -1,18 +1,20 @@
 package com.student.view;
 
-import java.util.Scanner;
 //import com.student.controller.StudentController;
-import static com.student.controller.StudentController.getStudentController;
+import static com.student.controller.StudentArrController.getStudentArrController;
+
+import java.util.Scanner;
+
 import com.student.model.vo.Student;
 
 //프로그램에서 화면을 출력해주는 역할
 
 
-public class MainView {
-	private static MainView view;
-	private MainView() {}
-	public static MainView mainView() {
-		if(view == null) view=new MainView();
+public class MainArrView {
+	private static MainArrView view;
+	private MainArrView() {}
+	public static MainArrView mainView() {
+		if(view == null) view=new MainArrView();
 		return view;
 	}
 	private Scanner sc = new Scanner(System.in);
@@ -21,7 +23,7 @@ public class MainView {
 	public void mainMenu () {
 //		StudentController studentController = new StudentController();
 		while(true){
-			System.out.println("=============학생관리프로그램 v0.1===============");
+			System.out.println("=============학생관리프로그램 v0.2===============");
 			System.out.println("1. 학생등록");
 			System.out.println("2. 학생수정(학년,반,전화번호,주소)");
 			System.out.println("3. 학생삭제");
@@ -34,25 +36,25 @@ public class MainView {
 			int choice = sc.nextInt();
 			sc.nextLine();
 			switch(choice) {
-			case 1: getStudentController().insertStudent();
+			case 1: getStudentArrController().insertStudent();
 				break;
 			case 2: 
-				getStudentController().updateStudent();
+				getStudentArrController().updateStudent();
 				break;
 			case 3: 
-				getStudentController().deleteStudent();
+				getStudentArrController().deleteStudent();
 				break;
 			case 4: 
-				getStudentController().searchStudent();
+				getStudentArrController().searchStudent();
 				break;
 			case 5: 
-				getStudentController().searchStudentByNo();
+				getStudentArrController().searchStudentByNo();
 				break;
 			case 6: 
-				getStudentController().searchStudentByGrade();
+				getStudentArrController().searchStudentByGrade();
 				break;
 			case 7: 
-				getStudentController().searchStudentByName();
+				getStudentArrController().searchStudentByName();
 				break;
 			case 0: 
 				System.out.println("프로그램을 종료합니다.");

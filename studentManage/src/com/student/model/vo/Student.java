@@ -18,8 +18,6 @@ public class Student {
 	
 	public Student() {
 		
-		
-		
 	}
 	
 	public Student(String name, int grade, int classRoom, String address,

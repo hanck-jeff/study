@@ -4,7 +4,16 @@ import com.student.model.vo.Student;
 
 //학생을 저장 관리하는 역할
 public class StudentDao {
-	private Student s,s1,s2; //필드가 세개면 세개 저장가능 ㅋ
+	private static StudentDao dao;
+	private StudentDao() {}
+	public static StudentDao studentDao() {
+		if(dao==null) dao = new StudentDao();
+		return dao;
+	}
+	
+	private Student s,s1,s2,s3; //필드가 세개면 세개 저장가능
+	
+	
 	
 	public boolean saveStudent(Student newStudent) {
 //		if(this.s.getStudentNo()!=0)this.s = newStudent; 
