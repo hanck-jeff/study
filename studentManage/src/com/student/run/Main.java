@@ -10,7 +10,6 @@ public class Main {
 //		new StudentController().menu();
 		
 		//single tone
-		
 //		StudentController.getStudentController().menu();  //학생관리 프로그램 v0.1
 		StudentArrController.getStudentArrController().menu(); //학생관리 프로그램 v0.2 
 
